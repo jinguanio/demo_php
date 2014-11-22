@@ -26,9 +26,10 @@ function get_account_info(){
 
 	$post = array(
 		"accessKey" => $access_key,
+        "coinType" => $coin_type,
 		"created" => time(),
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&created=". time() ."&secretKey={$secret_key}"),//MD5签名结果
-		"coinType" => $coin_type,
+
 	);
 
 	$res = curl($url, $post);
@@ -49,9 +50,9 @@ function get_hold_order_list(){
 
 	$post = array(
 		"accessKey" => $access_key,
+        "coinType" => $coin_type,
 		"created" => time(),
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&created=". time() ."&secretKey={$secret_key}"),//MD5签名结果
-		"coinType" => $coin_type,
 		"contractType" => $contractType,
 	);
 
@@ -73,9 +74,9 @@ function get_hold_order(){
 
 	$post = array(
 		"accessKey" => $access_key,
+        "coinType" => $coin_type,
 		"created" => time(),
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&created=". time() ."&secretKey={$secret_key}"),//MD5签名结果
-		"coinType" => $coin_type,
 		"contractType" => $contractType,
 	);
 
@@ -97,9 +98,9 @@ function get_order_list(){
 
 	$post = array(
 		"accessKey" => $access_key,
+        "coinType" => $coin_type,
 		"created" => time(),
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&created=". time() ."&secretKey={$secret_key}"),//MD5签名结果
-		"coinType" => $coin_type,
 		"contractType" => $contractType,
 	);
 
@@ -122,10 +123,10 @@ function get_order(){
 
 	$post = array(
 		"accessKey" => $access_key,
+        "coinType" => $coin_type,
+        "contractType" => $contractType,
 		"created" => time(),
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&contractType={$contractType}&created=". time() ."&id={$id}&secretKey={$secret_key}"),//MD5签名结果
-		"coinType" => $coin_type,
-		"contractType" => $contractType,
 		"id" => $id,
 	);
 
@@ -155,10 +156,10 @@ function order_save(){
 
 	$post = array(
 		"accessKey" => $access_key,
+        "coinType" => $coin_type,
+        "contractType" => $contractType,
 		"created" => time(),
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&contractType={$contractType}&created=". time() ."&money={$money}&orderType={$orderType}&price={$price}&secretKey={$secret_key}&tradeType={$tradeType}"),//MD5签名结果
-		"coinType" => $coin_type,
-		"contractType" => $contractType,
 		"orderType" => $orderType,
 		"tradeType" => $tradeType,
 		"price" => $price,
@@ -176,7 +177,7 @@ function order_save(){
 function order_cancel(){
 	global $access_key, $secret_key, $base_url;
 
-	$method = "order";
+	$method = "order/cancel";
 	$method_name = "取消订单";
 	$url = $base_url . $method;
 	$coin_type = 1; //币种 1比特币 2 莱特币
@@ -185,11 +186,11 @@ function order_cancel(){
 
 	$post = array(
 		"accessKey" => $access_key,
+        "coinType" => $coin_type,
+        "contractType" => $contractType,
 		"created" => time(),
+        "id" => $id,
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&contractType={$contractType}&created=". time() ."&id={$id}&secretKey={$secret_key}"),//MD5签名结果
-		"coinType" => $coin_type,
-		"contractType" => $contractType,
-		"id" => $id,
 	);
 
 	$res = curl($url, $post);
