@@ -1,6 +1,7 @@
 <?php
-$access_key = "xxxxxxxx-xxxxxxxx-xxxxxxxx-xxxxxxx";//访问密匙 请替换成自己的
-$secret_key = "xxxxxxxx-xxxxxxxx-xxxxxxxx-xxxxxxxx";//访问私匙 请替换成自己的
+//BitVC期货交易API
+$access_key = "a185534f-30be92a8-bdae6b08-e94ebb26"; //访问密匙 请替换成自己的
+$secret_key = "e4e13024-49038d47-502a6244-734f4f5d"; //访问私匙 请替换成自己的
 $base_url = "https://api.bitvc.com/futures/";
 
 //演示的函数
@@ -26,10 +27,9 @@ function get_account_info(){
 
 	$post = array(
 		"accessKey" => $access_key,
-        "coinType" => $coin_type,
 		"created" => time(),
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&created=". time() ."&secretKey={$secret_key}"),//MD5签名结果
-
+		"coinType" => $coin_type,
 	);
 
 	$res = curl($url, $post);
@@ -50,9 +50,9 @@ function get_hold_order_list(){
 
 	$post = array(
 		"accessKey" => $access_key,
-        "coinType" => $coin_type,
 		"created" => time(),
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&created=". time() ."&secretKey={$secret_key}"),//MD5签名结果
+		"coinType" => $coin_type,
 		"contractType" => $contractType,
 	);
 
@@ -74,9 +74,9 @@ function get_hold_order(){
 
 	$post = array(
 		"accessKey" => $access_key,
-        "coinType" => $coin_type,
 		"created" => time(),
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&created=". time() ."&secretKey={$secret_key}"),//MD5签名结果
+		"coinType" => $coin_type,
 		"contractType" => $contractType,
 	);
 
@@ -98,9 +98,9 @@ function get_order_list(){
 
 	$post = array(
 		"accessKey" => $access_key,
-        "coinType" => $coin_type,
 		"created" => time(),
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&created=". time() ."&secretKey={$secret_key}"),//MD5签名结果
+		"coinType" => $coin_type,
 		"contractType" => $contractType,
 	);
 
@@ -123,10 +123,10 @@ function get_order(){
 
 	$post = array(
 		"accessKey" => $access_key,
-        "coinType" => $coin_type,
-        "contractType" => $contractType,
 		"created" => time(),
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&contractType={$contractType}&created=". time() ."&id={$id}&secretKey={$secret_key}"),//MD5签名结果
+		"coinType" => $coin_type,
+		"contractType" => $contractType,
 		"id" => $id,
 	);
 
@@ -156,10 +156,10 @@ function order_save(){
 
 	$post = array(
 		"accessKey" => $access_key,
-        "coinType" => $coin_type,
-        "contractType" => $contractType,
 		"created" => time(),
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&contractType={$contractType}&created=". time() ."&money={$money}&orderType={$orderType}&price={$price}&secretKey={$secret_key}&tradeType={$tradeType}"),//MD5签名结果
+		"coinType" => $coin_type,
+		"contractType" => $contractType,
 		"orderType" => $orderType,
 		"tradeType" => $tradeType,
 		"price" => $price,
@@ -186,11 +186,11 @@ function order_cancel(){
 
 	$post = array(
 		"accessKey" => $access_key,
-        "coinType" => $coin_type,
-        "contractType" => $contractType,
 		"created" => time(),
-        "id" => $id,
 		"sign" => md5("accessKey={$access_key}&coinType={$coin_type}&contractType={$contractType}&created=". time() ."&id={$id}&secretKey={$secret_key}"),//MD5签名结果
+		"coinType" => $coin_type,
+		"contractType" => $contractType,
+		"id" => $id,
 	);
 
 	$res = curl($url, $post);
@@ -221,6 +221,7 @@ function curl($url, $data){
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	return curl_exec($ch);
 }
 
