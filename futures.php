@@ -1,7 +1,7 @@
 <?php
 //BitVC期货交易API
-$access_key = "a185534f-30be92a8-bdae6b08-e94ebb26"; //访问密匙 请替换成自己的
-$secret_key = "e4e13024-49038d47-502a6244-734f4f5d"; //访问私匙 请替换成自己的
+$access_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"; //访问密匙 请替换成自己的
+$secret_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"; //访问私匙 请替换成自己的
 $base_url = "https://api.bitvc.com/futures/";
 
 //演示的函数
