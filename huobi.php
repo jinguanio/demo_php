@@ -83,7 +83,7 @@ function order_buy(){
 	$tParams['method'] = 'buy';
 	$tParams['coin_type'] = 1; // 币种 1 比特币 2 莱特币
 	$tParams['price'] = 1000; // 委托订单ID
-	$tParams['amount'] = 1; // 委托订单ID
+	$tParams['amount'] = 1; // 买入数量
 
 	$extra['trade_password'] = 'pass1234'; // 此项不参与sign签名过程，如果开启下单时输入资金密码，必须传此参数
 	$extra['trade_id'] = 123456; // 此项不参与sign签名过程，用户自定义订单号为数字(最多15位，唯一值)
@@ -102,7 +102,7 @@ function order_sell(){
 	$tParams['method'] = 'sell';
 	$tParams['coin_type'] = 1; // 币种 1 比特币 2 莱特币
 	$tParams['price'] = 3000; // 委托订单ID
-	$tParams['amount'] = 1; // 委托订单ID
+	$tParams['amount'] = 1; // 卖出数量
 
 	$extra['trade_password'] = 'pass1234'; // 此项不参与sign签名过程，如果开启下单时输入资金密码，必须传此参数
 	$extra['trade_id'] = 123456; // 此项不参与sign签名过程，用户自定义订单号为数字(最多15位，唯一值)
@@ -185,7 +185,7 @@ function get_order_id_by_trade_id(){
 	$tParams = $extra = array();
 	$tParams['method'] = 'get_order_id_by_trade_id';
 	$tParams['coin_type'] = 1; // 币种 1 比特币 2 莱特币
-	$tParams['trade_id'] = 123456; // 币种 1 比特币 2 莱特币
+	$tParams['trade_id'] = 123456; // 调用下单接口时的参数trade_id
 
 	$res = send2api($tParams, $extra);
 	echo_msg($method_name, $res);
@@ -234,7 +234,6 @@ function httpRequest($pUrl, $pData){
 
 /**
  * 以数组形式输出json信息
- * @param string $res 接口返回的json数据
  */
 function echo_msg($method_name, $res){
 	$res = json_decode($res, true);
